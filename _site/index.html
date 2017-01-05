@@ -11,7 +11,7 @@
 
   <title>
     
-      Lanyon &middot; A Jekyll theme
+      Jennie Chu &middot; 
     
   </title>
 
@@ -85,8 +85,7 @@
       <div class="masthead">
         <div class="container">
           <h3 class="masthead-title">
-            <a href="/" title="Home">Lanyon</a>
-            <small>A Jekyll theme</small>
+            <a href="/" title="Home">Jennie Chu</a>
           </h3>
         </div>
       </div>
@@ -97,47 +96,58 @@
   <div class="post">
     <h1 class="post-title">
       <a href="//2014/01/02/introducing-lanyon/">
-        Introducing Lanyon
+	Dreaming of Reverse Engineering
       </a>
     </h1>
+    <span class="post-date">05 Nov 2016</span>
 
-    <span class="post-date">02 Jan 2014</span>
+    <p>Every week at <a href="">Holberton School</a>, we are given 2-3 problem sets, which always include some advanced extra credit problems. In our fourth week, we were given an <a href="">executable</a> program, written in C, that accepts a specific password. Our task was to create a random password generator that returns credentials for the executable. The goal of this exercise is to introduce us to <a href="">assembly</a> and <a href="">reverse engineering</a>, a process where, given a piece of software, one attempts to recreate its source code. For this project, I used the <a href="">GNU Project Debugger</a>(GDB) which can <a href="">disassemble</a> a program into human readable assembly code.</p>
 
-    <p>Lanyon is an unassuming <a href="http://jekyllrb.com">Jekyll</a> theme that places content first by tucking away navigation in a hidden drawer. It’s based on <a href="http://getpoole.com">Poole</a>, the Jekyll butler.</p>
+    <p>My goals were to disassemble the Linux executable, determine the parameters by which the password is checked, and finally, to create a C program that randomly generates valid passwords. Learning to read assembly code seemed instrumental to this exercise, so that is what I set out to do first.</p>
 
-<h3 id="built-on-poole">Built on Poole</h3>
+    <p>Using GDB and other tools, I was able to view the compiled assembly code and see what happens in the executable, step by step. I set breakpoints throughout the program and inspected how data stored in memory address registers was being manipulated. After spending the entire day trying to make out bits of assembly code through reading its hexadecimal outputs, I found the general format of the original source code.</p>
 
-<p>Poole is the Jekyll Butler, serving as an upstanding and effective foundation for Jekyll themes by <a href="https://twitter.com/mdo">@mdo</a>. Poole, and every theme built on it (like Lanyon here) includes the following:</p>
+    <p>Using GDB, I first disassembled the main program to view the functions that were being called. I spotted two standard library functions, printf and puts, as well as a checksum function.</p>
 
-<ul>
-  <li>Complete Jekyll setup included (layouts, config, <a href="/404">404</a>, <a href="/atom.xml">RSS feed</a>, posts, and <a href="/about">example page</a>)</li>
-  <li>Mobile friendly design and development</li>
-  <li>Easily scalable text and component sizing with <code class="highlighter-rouge">rem</code> units in the CSS</li>
-  <li>Support for a wide gamut of HTML elements</li>
-  <li>Related posts (time-based, because Jekyll) below each post</li>
-  <li>Syntax highlighting, courtesy Pygments (the Python-based code snippet highlighter)</li>
-</ul>
+<p>INSERT PICTURE</p>
+<p>Using another tool, <a href="">ltrace</a>, I was able to see that there were two calls to the puts function, and that they returned “Access Granted” and “Access Denied” respectively. </p>
 
-<h3 id="lanyon-features">Lanyon features</h3>
+<p>My next step was to examine the checksum function. After disassembling it, I saw that there is a loop that iterates through the password string, sums up each character’s ascii value, and stores the total on the stack. This suggests that the password’s parameters are dependent on the sum of input characters (more precisely, the <a href="">ASCII</a> codes of those characters).</p>
 
-<p>In addition to the features of Poole, Lanyon adds the following:</p>
+<p> INSERT PICTURE </p>
 
-<ul>
-  <li>Toggleable sliding sidebar (built with only CSS) via <strong>☰</strong> link in top corner</li>
-  <li>Sidebar includes support for textual modules and a dynamically generated navigation with active link support</li>
-  <li>Two orientations for content and sidebar, default (left sidebar) and <a href="https://github.com/poole/lanyon#reverse-layout">reverse</a> (right sidebar), available via <code class="highlighter-rouge">&lt;body&gt;</code> classes</li>
-  <li><a href="https://github.com/poole/lanyon#themes">Eight optional color schemes</a>, available via <code class="highlighter-rouge">&lt;body&gt;</code> classes</li>
-</ul>
+<p> However, nowhere in the checksum function does it compare my string’s sum to anything. Instead, the validation happens in the main function. </p>
 
-<p><a href="https://github.com/poole/lanyon#readme">Head to the readme</a> to learn more.</p>
+<p> At address 0x4005e9, after the call to the checksum function, I can see a cmpq, a comparison instruction: It compares the checksum (stored on the stack) with the immediate value of $0xad4. This immediate value is represented in <a href="">hexadecimal</a> (You know this because by convention, a number starting with 0x is a hexadecimal number.) When converted to base 10, it is 2772, so to get access to the executable, simply input a string whose characters’ ascii value totals 2772. </p>
 
-<h3 id="browser-support">Browser support</h3>
+<p>Fourteen hours into this exercise, I finally had my random password generator. My program continuously appends a random alphanumeric character to an array until the sum of the characters is one alphameric from 2772, then appends a last character that completes the summation to 2772. </p>
 
-<p>Lanyon is by preference a forward-thinking project. In addition to the latest versions of Chrome, Safari (mobile and desktop), and Firefox, it is only compatible with Internet Explorer 9 and above.</p>
+<figure class="highlight"><pre><code class="language-js" data-lang="js">
+<span class="kd">char</span> <span class="nx">array[<span class="nb">63</span>]</span> <span class="o">=</span><span class="s2">"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"</span> <span class="p">;</span>
 
-<h3 id="download">Download</h3>
+<span class="kd">char</span> <span class="nx">password[<span class = "nb">100</nb>]</span><span class="o">=</span><span class="nb">0</span><span class="p">;
 
-<p>Lanyon is developed on and hosted with GitHub. Head to the <a href="https://github.com/poole/lanyon">GitHub repository</a> for downloads, bug reports, and features requests.</p>
+<span class="nx">srand(time(NULL))</span><span class="p">;</span>
+<span class="nx">sum </span><span class="o">=</span><span class="nb"> 0</span><span class="p">;</span>
+<span class="nx">i </span><span class="o">=</span><span class="nb"> 0</span><span class="p">;</span>
+<span class="kd">while</span> <span class="p">(</span><span class="nx">sum</span> <span class="p">< (</span><span class="nb">2772</span> <span class="o">-</span> <span class="nb">122</span><span class="p">))</span>
+<span class="p">{</span>
+&#9<span class="nx">r</span> <span class="o">=</span> <span class="nx">rand</span><span class="p">()</span> <span class="o">%</span> <span class="nb">62</span><span class="p">;</span>
+&#9<span class="nx">password</span><span class="p">[<span class="nx">i</span>]</span> <span class="o">=</span> <span class="nx">array</span><span class="p">[<span class="nx">r</span>]</span><span class="p">;</span>
+&#9<span class="nx">sum</span> <span class="o">+=</span> <span class="nx">passwod</span><span class="p">[<span class="nx">i</span>]</span><span class="p">;</span>
+&#9<span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">r</span> <span class="o">=</span> <span class="nb">2772</span> <span class="o">-</span> <span class="nx">sum</span><span class="p">;</span>
+<span class="nx">password</span><span class="p">[<span class="nx">i</span>]</span> <span class="o">=</span> <span class="nx">r</span><span class="p">;</span>
+</code></pre></figure>
+
+<p>My logic was sound and all indicators suggested my output was correct. I double, triple, and quadruple-checked the string and its sum just to be sure, yet I was still denied access. It had been a long day (into the night), with my code untouched.</p>
+
+<p>Laying in bed, I felt defeated. I’d spent so much time learning assembly code, which was by far the most difficult part of the assignment, but I couldn’t get my simple random password generator program to work. I fell asleep going through the logic of my code over and over again.</p>
+
+<p>I dreamt about the day I’d had at Holberton, the lunch I ate, the people I talked to, and the day’s lessons about pointers and arrays. All the while, my password generator code was displaying in the background like some kind of teleprompter. And then I saw it: the null character—‘\0’—a control character in C that signifies the end of a string. None of my randomly generated passwords contained a null character! So while the sum of the characters ended up at 2772, when my program tried to print the string, it wouldn’t know where to stop. It would try to read other blocks of memory, either currently used or filled with garbage, until it eventually found a null character.</p>
+
+<p>At almost two in the morning, I woke up to this revelation. I had broken my glasses a few days earlier, so when I finally managed to find my laptop, I was literally squinting with my face inches from the screen, frantically typing away. When I made the changes and ran my revised program, it worked, and I was finally granted access.</p>
 
 <p>Thanks!</p>
 
