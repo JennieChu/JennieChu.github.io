@@ -3,28 +3,10 @@ layout: page
 title: About
 ---
 
-<p class="message">
-  Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
-</p>
+My name is Jennie Chu and I am an avid learner. Two years ago, I started learning the basics of web development. I familiarized myself with basic HTML, CSS, BootStrap, and JQuery, all of which led  to me creating personal websites for my friends and I.
 
-In the novel, *The Strange Case of Dr. Jeykll and Mr. Hyde*, Mr. Poole is Dr. Jekyll's virtuous and loyal butler. Similarly, Poole is an upstanding and effective butler that helps you build Jekyll themes. It's made by [@mdo](https://twitter.com/mdo).
+I have always loved solving and tinkering with puzzles. Hoping to become the next Indiana Jones, I studied Geology and Archaeology. Eventually, I began working as a College Counselor for low-income and first generation college students to give back to my community before teaching myself web design. 
 
-There are currently two themes built on Poole:
+Currently, I am a student at Holberton School, a two-year program that mentors students into becoming Full-Stack Engineers. This website is a showcase of blogs and projects I have done during my time as a Holberton student.
 
-* [Hyde](http://hyde.getpoole.com)
-* [Lanyon](http://lanyon.getpoole.com)
-
-Learn more and contribute on [GitHub](https://github.com/poole).
-
-## Setup
-
-Some fun facts about the setup of this project include:
-
-* Built for [Jekyll](http://jekyllrb.com)
-* Developed on GitHub and hosted for free on [GitHub Pages](https://pages.github.com)
-* Coded with [Sublime Text 2](http://sublimetext.com), an amazing code editor
-* Designed and developed while listening to music like [Blood Bros Trilogy](https://soundcloud.com/maddecent/sets/blood-bros-series)
-
-Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/poole/issues/new) or [ask me on Twitter](https://twitter.com/mdo).
-
-Thanks for reading!
+On my free time away from counseling, designing, and coding, I love playing video games, especially Dota2! 
