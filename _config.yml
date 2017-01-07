@@ -7,7 +7,7 @@ relative_permalinks: true
 # Setup
 title:               Jennie Chu
 tagline:             'Geologist, Counselor, and an Aspiring Software Engineer'
-description:         'Lifetime Learner and current student at <a href="https://www.holbertonschool.com/">Holberton School</a>
+description:         'Lifetime Learner and current student at <a href="https://www.holbertonschool.com/">Holberton School</a>'
 url:                 http://JennieChu.github.io
 baseurl:             ''
 paginate:            5
