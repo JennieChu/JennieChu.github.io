@@ -72,37 +72,37 @@ There are several builtins programmed into the hsh. Below is a description and u
 ​     <u>3.1 Env, Setenv, Unsetenv</u>
       <br>
       <br>
-To print out a list of all the environemental variables, the builtin `env` can be used. Each environmental variable and its value is printed out with a syntax of `key=value`. Each variable is seperated by a new line.
+To print out a list of all the environemental variables, the builtin <code>env</code> can be used. Each environmental variable and its value is printed out with a syntax of <code>key=value</code>. Each variable is seperated by a new line.
 <br>
 <br>
-To set an environemental variable, the builtin is `setenv`. The syntax to use `setenv` is `setenv key value`. If one of the arguments is missing, an error is returned.
+To set an environemental variable, the builtin is <code>setenv</code>. The syntax to use <code>setenv</code> is <code>setenv key value</code>. If one of the arguments is missing, an error is returned.
 <br>
 <br>
-To remove an environemental variable, the builtin `unsetenv` can be used. The syntax to use `unsetenv` is `unsetenv key`. If no `key` value is given, an error is returned.
+To remove an environemental variable, the builtin <code>unsetenv</code>can be used. The syntax to use <code>unsetenv</code>is <code>unsetenv key</code>. If no <code>key</code>value is given, an error is returned.
 <br>
 <br>
 ​	<u>3.2 cd</u>
 <br>
 <br>
-The `cd` command changes the shell working directory. The syntax to use the command is `cd DIR`. If no `DIR` is given, it is defaulted to the HOME shell variable. The full path of the directory is needed. To change the directory to its parent, the argument `..` can be used.
+The <code>cd</code>command changes the shell working directory. The syntax to use the command is <code>cd DIR</code>. If no <code>DIR</code>is given, it is defaulted to the HOME shell variable. The full path of the directory is needed. To change the directory to its parent, the argument<code>..</code>can be used.
 <br>
 <br>
 ​	<u>3.3 history</u>
 <br>
 <br>
-To print out a list of previous commands used, the command `history` can be used. The previous 50 commands will be printed out. The history of all commands is written into the `.simple_shell_history` file.
+To print out a list of previous commands used, the command <code>history</code>can be used. The previous 50 commands will be printed out. The history of all commands is written into the <code>.simple_shell_history</code>file.
 <br>
 <br>
 ​	<u>3.4 help</u>
 <br>
 <br>
-To receive a description and the syntax use of a specific command, you can use the `help` command.
+To receive a description and the syntax use of a specific command, you can use the <code>help</code>command.
 <br>
 <br>
 ​	<u>3.5 exit</u>
 <br>
 <br>
-To exit out of the shell, the user may use the `exit` builtin. To use `exit`, a status number, `n` can be given. If `n` is ommited, the exit status is that of the last command executed.
+To exit out of the shell, the user may use the <code>exit</code>builtin. To use <code>exit</code>, a status number,<code>n</code>can be given. If<code>n</code>is ommited, the exit status is that of the last command executed.
 <br>
 </div>
 <br>
