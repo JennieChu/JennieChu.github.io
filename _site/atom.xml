@@ -4,7 +4,7 @@
  <title>Lanyon</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2017-01-07T16:43:51-08:00</updated>
+ <updated>2017-01-07T21:21:30-08:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Mark Otto</name>
@@ -22,8 +22,8 @@
 &lt;h3 id=&quot;holberton-shell-hsh-is-a-simple-command-line-shell-for-os-x-and-linux-hsh-includes-most-basic-features-present-in-the-bash-shell-this-shell-was-built-as-a-project-for-holberton-school&quot;&gt;Holberton Shell (hsh) is a simple command line shell for OS X and Linux. Hsh includes most basic features present in the bash shell. This shell was built as a project for Holberton School.&lt;/h3&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;quick-start&quot;&gt;&lt;strong&gt;Quick Start&lt;/strong&gt;&lt;/h3&gt;
 
+&lt;h3 id=&quot;quick-start&quot;&gt;&lt;strong&gt;Quick Start&lt;/strong&gt;&lt;/h3&gt;
 &lt;hr /&gt;
 
 &lt;p&gt;HSH works like any other shell, like bash or zsh. Detailed user documentation on specific commands is available by running help within hsh.&lt;/p&gt;
@@ -35,6 +35,8 @@
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./simple_shell
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+
+&lt;p&gt;To view the source code or to download HSH, visit the holberton shell’s &lt;a href=&quot;https://github.com/j-tyler/simple_shell&quot;&gt;github page&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -78,45 +80,47 @@ Switches and flags arguements of commands are also supported by hsh. Most switch
 hsh provides support for comments added into standard input. Comments can be inputed by placing a&lt;code&gt;#&lt;/code&gt;before any statement. Comments are ignored by hsh.
 &lt;/div&gt;
 
-&lt;h4 id=&quot;3-builtins&quot;&gt;&lt;strong&gt;3) Builtins&lt;/strong&gt;&lt;/h4&gt;
+&lt;h3 id=&quot;3-builtins&quot;&gt;&lt;strong&gt;3) Builtins&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;There are several builtins programmed into the hsh. Below is a description and use for each builtin.&lt;/p&gt;
 &lt;div style=&quot;margin-left: 1em;&quot;&gt;
 ​     &lt;u&gt;3.1 Env, Setenv, Unsetenv&lt;/u&gt;
       &lt;br /&gt;
       &lt;br /&gt;
-To print out a list of all the environemental variables, the builtin `env` can be used. Each environmental variable and its value is printed out with a syntax of `key=value`. Each variable is seperated by a new line.
+To print out a list of all the environemental variables, the builtin &lt;code&gt;env&lt;/code&gt; can be used. Each environmental variable and its value is printed out with a syntax of &lt;code&gt;key=value&lt;/code&gt;. Each variable is seperated by a new line.
 &lt;br /&gt;
 &lt;br /&gt;
-To set an environemental variable, the builtin is `setenv`. The syntax to use `setenv` is `setenv key value`. If one of the arguments is missing, an error is returned.
+To set an environemental variable, the builtin is &lt;code&gt;setenv&lt;/code&gt;. The syntax to use &lt;code&gt;setenv&lt;/code&gt; is &lt;code&gt;setenv key value&lt;/code&gt;. If one of the arguments is missing, an error is returned.
 &lt;br /&gt;
 &lt;br /&gt;
-To remove an environemental variable, the builtin `unsetenv` can be used. The syntax to use `unsetenv` is `unsetenv key`. If no `key` value is given, an error is returned.
+To remove an environemental variable, the builtin &lt;code&gt;unsetenv&lt;/code&gt;can be used. The syntax to use &lt;code&gt;unsetenv&lt;/code&gt;is &lt;code&gt;unsetenv key&lt;/code&gt;. If no &lt;code&gt;key&lt;/code&gt;value is given, an error is returned.
 &lt;br /&gt;
 &lt;br /&gt;
 ​	&lt;u&gt;3.2 cd&lt;/u&gt;
 &lt;br /&gt;
 &lt;br /&gt;
-The `cd` command changes the shell working directory. The syntax to use the command is `cd DIR`. If no `DIR` is given, it is defaulted to the HOME shell variable. The full path of the directory is needed. To change the directory to its parent, the argument `..` can be used.
+The &lt;code&gt;cd&lt;/code&gt;command changes the shell working directory. The syntax to use the command is &lt;code&gt;cd DIR&lt;/code&gt;. If no &lt;code&gt;DIR&lt;/code&gt;is given, it is defaulted to the HOME shell variable. The full path of the directory is needed. To change the directory to its parent, the argument&lt;code&gt;..&lt;/code&gt;can be used.
 &lt;br /&gt;
 &lt;br /&gt;
 ​	&lt;u&gt;3.3 history&lt;/u&gt;
 &lt;br /&gt;
 &lt;br /&gt;
-To print out a list of previous commands used, the command `history` can be used. The previous 50 commands will be printed out. The history of all commands is written into the `.simple_shell_history` file.
+To print out a list of previous commands used, the command &lt;code&gt;history&lt;/code&gt;can be used. The previous 50 commands will be printed out. The history of all commands is written into the &lt;code&gt;.simple_shell_history&lt;/code&gt;file.
 &lt;br /&gt;
 &lt;br /&gt;
 ​	&lt;u&gt;3.4 help&lt;/u&gt;
 &lt;br /&gt;
 &lt;br /&gt;
-To receive a description and the syntax use of a specific command, you can use the `help` command.
+To receive a description and the syntax use of a specific command, you can use the &lt;code&gt;help&lt;/code&gt;command.
 &lt;br /&gt;
 &lt;br /&gt;
 ​	&lt;u&gt;3.5 exit&lt;/u&gt;
 &lt;br /&gt;
 &lt;br /&gt;
-To exit out of the shell, the user may use the `exit` builtin. To use `exit`, a status number, `n` can be given. If `n` is ommited, the exit status is that of the last command executed.
+To exit out of the shell, the user may use the &lt;code&gt;exit&lt;/code&gt;builtin. To use &lt;code&gt;exit&lt;/code&gt;, a status number,&lt;code&gt;n&lt;/code&gt;can be given. If&lt;code&gt;n&lt;/code&gt;is ommited, the exit status is that of the last command executed.
 &lt;br /&gt;
 &lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h3 id=&quot;exiting-commands-and-hsh&quot;&gt;&lt;strong&gt;Exiting commands and hsh&lt;/strong&gt;&lt;/h3&gt;
 &lt;hr /&gt;
 &lt;p&gt;To exit out of a process or command, &lt;code class=&quot;highlighter-rouge&quot;&gt;ctrl c&lt;/code&gt; is used. Control-C interrupts a process and causes it to abort.&lt;/p&gt;

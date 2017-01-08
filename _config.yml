@@ -8,7 +8,7 @@ title:               Jennie Chu
 tagline:             'Geologist, Counselor, and an Aspiring Software Engineer'
 description:         'Lifetime Learner and current student at <a href="https://www.holbertonschool.com/">Holberton School</a>'
 url:                 http://JennieChu.github.io
-baseurl:             ''
+baseurl:             ""
 paginate:            5
 
 # About/contact

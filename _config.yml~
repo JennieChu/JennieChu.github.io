@@ -2,14 +2,13 @@
 #
 # Use of `relative_permalinks` ensures post links from the index work properly.
 permalink:           pretty
-relative_permalinks: true
 
 # Setup
 title:               Jennie Chu
 tagline:             'Geologist, Counselor, and an Aspiring Software Engineer'
 description:         'Lifetime Learner and current student at <a href="https://www.holbertonschool.com/">Holberton School</a>'
 url:                 http://JennieChu.github.io
-baseurl:             ''
+baseurl:             http://Jennie.Chu.github.io
 paginate:            5
 
 # About/contact
