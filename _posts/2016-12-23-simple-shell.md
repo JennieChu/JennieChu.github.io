@@ -8,8 +8,8 @@ title: Project - Holberton Simple Shell
 ### Holberton Shell (hsh) is a simple command line shell for OS X and Linux. Hsh includes most basic features present in the bash shell. This shell was built as a project for Holberton School.
 
 <br>
-### <strong>Quick Start</strong>
 
+### <strong>Quick Start</strong>
 ------
 
 HSH works like any other shell, like bash or zsh. Detailed user documentation on specific commands is available by running help within hsh.
