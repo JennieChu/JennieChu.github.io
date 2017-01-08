@@ -4,7 +4,7 @@
  <title>Lanyon</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2017-01-07T13:28:08-08:00</updated>
+ <updated>2017-01-07T16:43:51-08:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Mark Otto</name>
@@ -13,10 +13,123 @@
 
  
  <entry>
+   <title>Project - Holberton Simple Shell</title>
+   <link href="http://localhost:4000/2016/12/23/simple-shell/"/>
+   <updated>2016-12-23T00:00:00-08:00</updated>
+   <id>http://localhost:4000/2016/12/23/simple-shell</id>
+   <content type="html">&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/0l1v6rz.png&amp;quot;Holberton Simple Shell&amp;quot;&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;holberton-shell-hsh-is-a-simple-command-line-shell-for-os-x-and-linux-hsh-includes-most-basic-features-present-in-the-bash-shell-this-shell-was-built-as-a-project-for-holberton-school&quot;&gt;Holberton Shell (hsh) is a simple command line shell for OS X and Linux. Hsh includes most basic features present in the bash shell. This shell was built as a project for Holberton School.&lt;/h3&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;quick-start&quot;&gt;&lt;strong&gt;Quick Start&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;HSH works like any other shell, like bash or zsh. Detailed user documentation on specific commands is available by running help within hsh.&lt;/p&gt;
+
+&lt;p&gt;HSH builds successfully with a GCC 4.8.5 compiler or later. HSH can compile using &lt;code class=&quot;highlighter-rouge&quot;&gt;gcc 4.8.4 -Wall -Werror -Wextra -pedantic *.c -o simple_shell&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;To start up HSH, simply type the following into your terminal:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;./simple_shell
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;supported-features&quot;&gt;&lt;strong&gt;Supported Features&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;1-syntax&quot;&gt;&lt;strong&gt;1) Syntax&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;Like other shells, hsh is used by given it commands. Every hsh command follows the same general syntax: &lt;code class=&quot;highlighter-rouge&quot;&gt;command name {arguments}&lt;/code&gt;. The command is executed by writing the name of the command followed by any arguments.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;echo &lt;/span&gt;Hello Holberton
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;2-commands&quot;&gt;&lt;strong&gt;2) Commands&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;Any program in your computer can be used as a command in hsh. If the program is located in any of the directories in the PATH variable, then typing the filename is enough to run the command. Otherwise, a full path to the program is required.&lt;/p&gt;
+
+&lt;div style=&quot;margin-left: 1em;&quot;&gt;
+    &lt;u&gt;2.1 Command Seperation&lt;/u&gt;
+    &lt;br /&gt;
+    &lt;br /&gt;
+Commands and any arguments are seperated by a &lt;code&gt;' '&lt;/code&gt;. Commands end with either a newline				  (i.e Return Key) or a&lt;code&gt;;&lt;/code&gt;,&lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt;, or &lt;code&gt;||&lt;/code&gt;.&lt;br /&gt;
+    &lt;br /&gt;
+To enter more than one command in one line, a &lt;code&gt;;&lt;/code&gt;can be used to seperate commands. Commands are read and executed left to right.
+    &lt;br /&gt;
+    &lt;br /&gt;
+If commands are seperated by &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt;, the leftmost command is read and executed and if the execution failed, no other commands are executed, otherwise, the next command in line will be executed. If the commands is seperated by&lt;code&gt;||&lt;/code&gt;, regardless of execution failure or success of the leftmost command, all suceeded commands are executed.
+   &lt;br /&gt;
+   &lt;br /&gt;
+​   &lt;u&gt;2.2 Switches and Flags&lt;/u&gt;
+    &lt;br /&gt;
+    &lt;br /&gt;
+Switches and flags arguements of commands are also supported by hsh. Most switches start with a hypen,&lt;code&gt;-&lt;/code&gt;and always somehows affect the command in one way.
+	 &lt;br /&gt;
+	 &lt;br /&gt;
+​   &lt;u&gt;2.3 Comments&lt;/u&gt;
+    &lt;br /&gt;
+    &lt;br /&gt;
+hsh provides support for comments added into standard input. Comments can be inputed by placing a&lt;code&gt;#&lt;/code&gt;before any statement. Comments are ignored by hsh.
+&lt;/div&gt;
+
+&lt;h4 id=&quot;3-builtins&quot;&gt;&lt;strong&gt;3) Builtins&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;There are several builtins programmed into the hsh. Below is a description and use for each builtin.&lt;/p&gt;
+&lt;div style=&quot;margin-left: 1em;&quot;&gt;
+​     &lt;u&gt;3.1 Env, Setenv, Unsetenv&lt;/u&gt;
+      &lt;br /&gt;
+      &lt;br /&gt;
+To print out a list of all the environemental variables, the builtin `env` can be used. Each environmental variable and its value is printed out with a syntax of `key=value`. Each variable is seperated by a new line.
+&lt;br /&gt;
+&lt;br /&gt;
+To set an environemental variable, the builtin is `setenv`. The syntax to use `setenv` is `setenv key value`. If one of the arguments is missing, an error is returned.
+&lt;br /&gt;
+&lt;br /&gt;
+To remove an environemental variable, the builtin `unsetenv` can be used. The syntax to use `unsetenv` is `unsetenv key`. If no `key` value is given, an error is returned.
+&lt;br /&gt;
+&lt;br /&gt;
+​	&lt;u&gt;3.2 cd&lt;/u&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+The `cd` command changes the shell working directory. The syntax to use the command is `cd DIR`. If no `DIR` is given, it is defaulted to the HOME shell variable. The full path of the directory is needed. To change the directory to its parent, the argument `..` can be used.
+&lt;br /&gt;
+&lt;br /&gt;
+​	&lt;u&gt;3.3 history&lt;/u&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+To print out a list of previous commands used, the command `history` can be used. The previous 50 commands will be printed out. The history of all commands is written into the `.simple_shell_history` file.
+&lt;br /&gt;
+&lt;br /&gt;
+​	&lt;u&gt;3.4 help&lt;/u&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+To receive a description and the syntax use of a specific command, you can use the `help` command.
+&lt;br /&gt;
+&lt;br /&gt;
+​	&lt;u&gt;3.5 exit&lt;/u&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+To exit out of the shell, the user may use the `exit` builtin. To use `exit`, a status number, `n` can be given. If `n` is ommited, the exit status is that of the last command executed.
+&lt;br /&gt;
+&lt;/div&gt;
+&lt;h3 id=&quot;exiting-commands-and-hsh&quot;&gt;&lt;strong&gt;Exiting commands and hsh&lt;/strong&gt;&lt;/h3&gt;
+&lt;hr /&gt;
+&lt;p&gt;To exit out of a process or command, &lt;code class=&quot;highlighter-rouge&quot;&gt;ctrl c&lt;/code&gt; is used. Control-C interrupts a process and causes it to abort.&lt;/p&gt;
+
+&lt;p&gt;To exit out of the hsh shell, the user can do one of the following, &lt;code class=&quot;highlighter-rouge&quot;&gt;ctrl D&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;exit n&lt;/code&gt;. When exiting with &lt;code class=&quot;highlighter-rouge&quot;&gt;ctrl D&lt;/code&gt;, an exit status of 0 is given. Using &lt;code class=&quot;highlighter-rouge&quot;&gt;exit&lt;/code&gt;, you can input its exit status or it is defaulted to the status of the last command executed.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>Dreaming of Reverse Engineering</title>
-   <link href="http://localhost:4000/2015/11/14/dreaming-reverse-engineering/"/>
-   <updated>2015-11-14T00:00:00-08:00</updated>
-   <id>http://localhost:4000/2015/11/14/dreaming-reverse-engineering</id>
+   <link href="http://localhost:4000/2016/11/14/dreaming-reverse-engineering/"/>
+   <updated>2016-11-14T00:00:00-08:00</updated>
+   <id>http://localhost:4000/2016/11/14/dreaming-reverse-engineering</id>
    <content type="html">&lt;p&gt;Every week at Holberton School, we are given 2-3 problem sets, which always include some advanced extra credit problems. In our fourth week, we were given an executable program, written in C, that accepts a specific password. Our task was to create a random password generator that returns credentials for the executable. The goal of this exercise is to introduce us to assembly and reverse engineering, a process where, given a piece of software, one attempts to recreate its source code. For this project, I used the GNU Project Debugger (GDB), which can disassemble a program into human readable assembly code.&lt;/p&gt;
 
 &lt;p&gt;My goals were to disassemble the Linux executable, determine the parameters by which the password is checked, and finally, to create a C program that randomly generates valid passwords. Learning to read assembly code seemed instrumental to this exercise, so that is what I set out to do first.&lt;/p&gt;
