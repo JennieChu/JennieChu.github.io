@@ -7,8 +7,6 @@ Every week at Holberton School, we are given 2-3 problem sets, which always incl
 
 My goals were to disassemble the Linux executable, determine the parameters by which the password is checked, and finally, to create a C program that randomly generates valid passwords. Learning to read assembly code seemed instrumental to this exercise, so that is what I set out to do first.
 
-<!--break-->
-
 Using GDB and other tools, I was able to view the compiled assembly code and see what happens in the executable, step by step. I set breakpoints throughout the program and inspected how data stored in memory address registers was being manipulated. After spending the entire day trying to make out bits of assembly code through reading its hexadecimal outputs, I found the general format of the original source code.
 
 Using GDB, I first disassembled the main program to view the functions that were being called. I spotted two standard library functions, printf and puts, as well as a checksum function. 

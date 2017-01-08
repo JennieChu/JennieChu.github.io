@@ -4,7 +4,7 @@
  <title>Lanyon</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2017-01-07T21:21:30-08:00</updated>
+ <updated>2017-01-07T21:33:25-08:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Mark Otto</name>
@@ -39,6 +39,8 @@
 &lt;p&gt;To view the source code or to download HSH, visit the holberton shell’s &lt;a href=&quot;https://github.com/j-tyler/simple_shell&quot;&gt;github page&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;!--break--&gt;
 
 &lt;h3 id=&quot;supported-features&quot;&gt;&lt;strong&gt;Supported Features&lt;/strong&gt;&lt;/h3&gt;
 
@@ -137,6 +139,8 @@ To exit out of the shell, the user may use the &lt;code&gt;exit&lt;/code&gt;buil
    <content type="html">&lt;p&gt;Every week at Holberton School, we are given 2-3 problem sets, which always include some advanced extra credit problems. In our fourth week, we were given an executable program, written in C, that accepts a specific password. Our task was to create a random password generator that returns credentials for the executable. The goal of this exercise is to introduce us to assembly and reverse engineering, a process where, given a piece of software, one attempts to recreate its source code. For this project, I used the GNU Project Debugger (GDB), which can disassemble a program into human readable assembly code.&lt;/p&gt;
 
 &lt;p&gt;My goals were to disassemble the Linux executable, determine the parameters by which the password is checked, and finally, to create a C program that randomly generates valid passwords. Learning to read assembly code seemed instrumental to this exercise, so that is what I set out to do first.&lt;/p&gt;
+
+&lt;!--break--&gt;
 
 &lt;p&gt;Using GDB and other tools, I was able to view the compiled assembly code and see what happens in the executable, step by step. I set breakpoints throughout the program and inspected how data stored in memory address registers was being manipulated. After spending the entire day trying to make out bits of assembly code through reading its hexadecimal outputs, I found the general format of the original source code.&lt;/p&gt;
 
