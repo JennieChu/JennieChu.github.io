@@ -26,6 +26,8 @@ To view the source code or to download HSH, visit the holberton shell's [github 
 
 <br>
 
+<!--break-->
+
 ### <strong>Supported Features</strong>
 
 ------

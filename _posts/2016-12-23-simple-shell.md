@@ -24,9 +24,9 @@ To start up HSH, simply type the following into your terminal:
 
 To view the source code or to download HSH, visit the holberton shell's [github page](https://github.com/j-tyler/simple_shell).
 
+<!--break-->
 <br>
 
-<!--break-->
 
 ### <strong>Supported Features</strong>
 

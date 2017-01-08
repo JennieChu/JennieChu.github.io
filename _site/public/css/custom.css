@@ -1,7 +1,17 @@
-.sidebar {
+.sidebar 
+{
        opacity: 0.8;
 }
    
-.sidebar:hover {
+.sidebar:hover 
+{
        opacity: 1.0;
+}
+
+.readmore
+{
+	width: 150px;
+	text-align: center;
+	display: block;
+	margin: 0 auto;
 }
