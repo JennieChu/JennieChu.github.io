@@ -12,3 +12,23 @@
 	text-align: center;
 	margin: 0 auto;
 }
+
+a
+{
+	color: #6599FF;
+}
+
+a:hover
+{
+	transition: color 0.2s ease;
+	color: #FFDE00;
+}
+.readmore
+{
+
+	text-decoration: none;
+	display: block;
+	text-align: center;
+	margin: 0 auto;
+
+}
