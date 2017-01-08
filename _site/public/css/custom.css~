@@ -1,0 +1,7 @@
+.sidebar {
+       opacity: 0.8;
+}
+   
+.sidebar:hover {
+       opacity: 1.0;
+}
