@@ -64,7 +64,7 @@ Switches and flags arguements of commands are also supported by hsh. Most switch
 hsh provides support for comments added into standard input. Comments can be inputed by placing a<code>#</code>before any statement. Comments are ignored by hsh.
 </div>
 
-#### <strong>3) Builtins</strong>
+### <strong>3) Builtins</strong>
 There are several builtins programmed into the hsh. Below is a description and use for each builtin.
 <div style="margin-left: 1em;">
 ​     <u>3.1 Env, Setenv, Unsetenv</u>
@@ -103,6 +103,8 @@ To receive a description and the syntax use of a specific command, you can use t
 To exit out of the shell, the user may use the `exit` builtin. To use `exit`, a status number, `n` can be given. If `n` is ommited, the exit status is that of the last command executed.
 <br>
 </div>
+<br>
+
 ### <strong>Exiting commands and hsh</strong>
 ------
 To exit out of a process or command, `ctrl c` is used. Control-C interrupts a process and causes it to abort.

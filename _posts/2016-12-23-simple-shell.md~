@@ -1,55 +1,110 @@
 ---
 layout: post
-title: Dreaming of Reverse Engineering
+title: Project - Holberton Simple Shell
 ---
+![alt text](http://i.imgur.com/0l1v6rz.png"Holberton Simple Shell")
 
-Every week at Holberton School, we are given 2-3 problem sets, which always include some advanced extra credit problems. In our fourth week, we were given an executable program, written in C, that accepts a specific password. Our task was to create a random password generator that returns credentials for the executable. The goal of this exercise is to introduce us to assembly and reverse engineering, a process where, given a piece of software, one attempts to recreate its source code. For this project, I used the GNU Project Debugger (GDB), which can disassemble a program into human readable assembly code.
 
-My goals were to disassemble the Linux executable, determine the parameters by which the password is checked, and finally, to create a C program that randomly generates valid passwords. Learning to read assembly code seemed instrumental to this exercise, so that is what I set out to do first.
+### Holberton Shell (hsh) is a simple command line shell for OS X and Linux. Hsh includes most basic features present in the bash shell. This shell was built as a project for Holberton School.
 
-Using GDB and other tools, I was able to view the compiled assembly code and see what happens in the executable, step by step. I set breakpoints throughout the program and inspected how data stored in memory address registers was being manipulated. After spending the entire day trying to make out bits of assembly code through reading its hexadecimal outputs, I found the general format of the original source code.
+<br>
+### <strong>Quick Start</strong>
 
-Using GDB, I first disassembled the main program to view the functions that were being called. I spotted two standard library functions, printf and puts, as well as a checksum function. 
+------
 
-![main_functions.png](https://lh6.googleusercontent.com/6eo0gxgnljWp5qW79QAHITwJ0rq0owCdisryGnpSxBIiHMil4DuwJ3qr753dlJz_fhxzsGW_PhUBkI0to1ixpGBxoUQMBP85ftXYPkCTxiD1tKPKR3leMkHDnxay3l2FrJtuhlDN)
+HSH works like any other shell, like bash or zsh. Detailed user documentation on specific commands is available by running help within hsh.
 
-Using another tool, ltrace, I was able to see that there were two calls to the puts function, and that they returned “Access Granted” and “Access Denied” respectively.
+HSH builds successfully with a GCC 4.8.5 compiler or later. HSH can compile using `gcc 4.8.4 -Wall -Werror -Wextra -pedantic *.c -o simple_shell`.
 
-My next step was to examine the checksum function. After disassembling it, I saw that there is a loop that iterates through the password string, sums up each character’s ascii value, and stores the total on the stack. This suggests that the password’s parameters are dependent on the sum of input characters (more precisely, the ASCII codes of those characters).
-
-![checksumpr.png](https://lh3.googleusercontent.com/o2Pozw81C18SPKrqU8UOvn3dbsQRKLOyTCDlKCoc5mCwSrodCx4-5Il2sfJiBNgulLDFl1dlyZqMV_0-DDMRkg2ov75S7PyXQE_w-RWTcuTDd_sCLaXoJUPXH2NQZ3Ioj9tI1gh2)
-
-However, nowhere in the checksum function does it compare my string’s sum to anything. Instead, the validation happens in the main function. 
-
-At address 0x4005e9, after the call to the checksum function, I can see a cmpq, a comparison instruction: It compares the checksum (stored on the stack) with the immediate value of $0xad4. This immediate value is represented in hexadecimal. (You know this because by convention, a number starting with 0x is a hexadecimal number.) When converted to base 10, it is 2772, so to get access to the executable, simply input a string whose characters’ ascii value totals 2772. 
-
-Fourteen hours into this exercise, I finally had my random password generator. My program continuously appends a random alphanumeric character to an array until the sum of the characters is one alphameric from 2772, then appends a last character that completes the summation to 2772. 
+To start up HSH, simply type the following into your terminal:
 
 ```
-
-char array[63] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-char password[100];
-
-srand(time(NULL));
-sum = 0;i = 0;
-while (sum < (2772 - 122))
-{     
-      r = rand() % 62;	
-      password[i] = array[r];	
-      sum= sum + password[i];
-      i++;
-}
-r = 2772 - sum;
-password[i] = r;
-
+./simple_shell
 ```
 
-My logic was sound and all indicators suggested my output was correct. I double, triple, and quadruple-checked the string and its sum just to be sure, yet I was still denied access. It had been a long day (into the night), with my code untouched.
+<br>
 
-Laying in bed, I felt defeated. I’d spent so much time learning assembly code, which was by far the most difficult part of the assignment, but I couldn’t get my simple random password generator program to work. I fell asleep going through the logic of my code over and over again.
+### <strong>Supported Features</strong>
 
-I dreamt about the day I’d had at Holberton, the lunch I ate, the people I talked to, and the day’s lessons about pointers and arrays. All the while, my password generator code was displaying in the background like some kind of teleprompter. And then I saw it: the null character—‘\0’—a control character in C that signifies the end of a string. None of my randomly generated passwords contained a null character! So while the sum of the characters ended up at 2772, when my program tried to print the string, it wouldn’t know where to stop. It would try to read other blocks of memory, either currently used or filled with garbage, until it eventually found a null character.
+------
 
-At almost two in the morning, I woke up to this revelation. I had broken my glasses a few days earlier, so when I finally managed to find my laptop, I was literally squinting with my face inches from the screen, frantically typing away. When I made the changes and ran my revised program, it worked, and I was finally granted access.
+#### <strong>1) Syntax</strong>
 
-I am currently a student at Holberton School, named after Betty Holberton, one of the first female computer pioneers. It is said that Betty would often dream about coding, and solved many problems in her sleep. Like Betty, my mind doesn’t stop when the workday ends at 5:00, or even during sleep. I hope to follow in Betty Holberton’s path, and make an impact in the programming field.
+Like other shells, hsh is used by given it commands. Every hsh command follows the same general syntax: `command name {arguments}`. The command is executed by writing the name of the command followed by any arguments.
+
+```bash
+echo Hello Holberton
+```
+
+#### <strong>2) Commands</strong>
+
+Any program in your computer can be used as a command in hsh. If the program is located in any of the directories in the PATH variable, then typing the filename is enough to run the command. Otherwise, a full path to the program is required.
+
+<div style="margin-left: 1em;">
+    <u>2.1 Command Seperation</u>
+    <br>
+    <br>
+Commands and any arguments are seperated by a <code>' '</code>. Commands end with either a newline				  (i.e Return Key) or a<code>;</code>,<code>&&</code>, or <code>||</code>.<br>
+    <br>
+To enter more than one command in one line, a <code>;</code>can be used to seperate commands. Commands are read and executed left to right.
+    <br>
+    <br>
+If commands are seperated by <code>&&</code>, the leftmost command is read and executed and if the execution failed, no other commands are executed, otherwise, the next command in line will be executed. If the commands is seperated by<code>||</code>, regardless of execution failure or success of the leftmost command, all suceeded commands are executed.
+   <br>
+   <br>
+​   <u>2.2 Switches and Flags</u>
+    <br>
+    <br>
+Switches and flags arguements of commands are also supported by hsh. Most switches start with a hypen,<code>-</code>and always somehows affect the command in one way.
+	 <br>
+	 <br>
+​   <u>2.3 Comments</u>
+    <br>
+    <br>
+hsh provides support for comments added into standard input. Comments can be inputed by placing a<code>#</code>before any statement. Comments are ignored by hsh.
+</div>
+
+#### <strong>3) Builtins</strong>
+There are several builtins programmed into the hsh. Below is a description and use for each builtin.
+<div style="margin-left: 1em;">
+​     <u>3.1 Env, Setenv, Unsetenv</u>
+      <br>
+      <br>
+To print out a list of all the environemental variables, the builtin `env` can be used. Each environmental variable and its value is printed out with a syntax of `key=value`. Each variable is seperated by a new line.
+<br>
+<br>
+To set an environemental variable, the builtin is `setenv`. The syntax to use `setenv` is `setenv key value`. If one of the arguments is missing, an error is returned.
+<br>
+<br>
+To remove an environemental variable, the builtin `unsetenv` can be used. The syntax to use `unsetenv` is `unsetenv key`. If no `key` value is given, an error is returned.
+<br>
+<br>
+​	<u>3.2 cd</u>
+<br>
+<br>
+The `cd` command changes the shell working directory. The syntax to use the command is `cd DIR`. If no `DIR` is given, it is defaulted to the HOME shell variable. The full path of the directory is needed. To change the directory to its parent, the argument `..` can be used.
+<br>
+<br>
+​	<u>3.3 history</u>
+<br>
+<br>
+To print out a list of previous commands used, the command `history` can be used. The previous 50 commands will be printed out. The history of all commands is written into the `.simple_shell_history` file.
+<br>
+<br>
+​	<u>3.4 help</u>
+<br>
+<br>
+To receive a description and the syntax use of a specific command, you can use the `help` command.
+<br>
+<br>
+​	<u>3.5 exit</u>
+<br>
+<br>
+To exit out of the shell, the user may use the `exit` builtin. To use `exit`, a status number, `n` can be given. If `n` is ommited, the exit status is that of the last command executed.
+<br>
+</div>
+### <strong>Exiting commands and hsh</strong>
+------
+To exit out of a process or command, `ctrl c` is used. Control-C interrupts a process and causes it to abort.
+
+To exit out of the hsh shell, the user can do one of the following, `ctrl D` or `exit n`. When exiting with `ctrl D`, an exit status of 0 is given. Using `exit`, you can input its exit status or it is defaulted to the status of the last command executed.
